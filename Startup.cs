@@ -1,3 +1,4 @@
+using System;
 using AspNetCoreUserDataAuthorization.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,12 +11,14 @@ namespace AspNetCoreUserDataAuthorization
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
+            Env = env;
         }
 
         public IConfiguration Configuration { get; }
+        public IWebHostEnvironment Env { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -23,7 +26,19 @@ namespace AspNetCoreUserDataAuthorization
             services.AddRazorPages();
 
             services.AddDbContext<AspNetCoreUserDataAuthorizationContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString("ContactContext")));
+            {
+                var connectionString = Configuration.GetConnectionString("ContactContext");
+                if (Env.IsDevelopment())
+                {
+                    Console.WriteLine($"{nameof(ConfigureServices)} called in Development environment, with connectionString={connectionString}");
+                    options.UseSqlite(connectionString);
+                }
+                else
+                {
+                    Console.WriteLine($"{nameof(ConfigureServices)} called in Production environment, with connectionString={connectionString}");
+                    options.UseNpgsql(connectionString);
+                }
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -31,10 +46,12 @@ namespace AspNetCoreUserDataAuthorization
         {
             if (env.IsDevelopment())
             {
+                Console.WriteLine("Using Development environment.");
                 app.UseDeveloperExceptionPage();
             }
             else
             {
+                Console.WriteLine("Using Prod environment.");
                 app.UseExceptionHandler("/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
