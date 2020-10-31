@@ -29,14 +29,15 @@ namespace AspNetCoreUserDataAuthorization
             services.AddDbContext<AspNetCoreUserDataAuthorizationContext>(options =>
             {
                 var connectionString = Configuration.GetConnectionString("ContactContext");
+                Console.WriteLine($"DB connectionString = {connectionString}");
                 if (Env.IsDevelopment())
                 {
-                    Console.WriteLine($"{nameof(ConfigureServices)} called in Development environment, with connectionString={connectionString}");
+                    Console.WriteLine($"{nameof(ConfigureServices)} called in Development environment.");
                     options.UseSqlite(connectionString);
                 }
                 else
                 {
-                    Console.WriteLine($"{nameof(ConfigureServices)} called in Production environment, with connectionString={connectionString}");
+                    Console.WriteLine($"{nameof(ConfigureServices)} called in Production environment.");
                     options.UseNpgsql(connectionString);
                 }
             });
