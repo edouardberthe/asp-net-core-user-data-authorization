@@ -1,5 +1,6 @@
 using System;
 using AspNetCoreUserDataAuthorization.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -43,11 +44,12 @@ namespace AspNetCoreUserDataAuthorization
             });
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                    .AddRoles<IdentityRole>()
                     .AddEntityFrameworkStores<AspNetCoreUserDataAuthorizationContext>();
 
             services.Configure<IdentityOptions>(options =>
             {
-                // Password settings.
+                // Password settings
                 if (Env.IsDevelopment())
                 {
                     options.Password.RequireDigit = false;
@@ -66,6 +68,13 @@ namespace AspNetCoreUserDataAuthorization
                     options.Password.RequiredLength = 6;
                     options.Password.RequiredUniqueChars = 1;
                 }
+            });
+
+            services.AddAuthorization(options =>
+            {
+                options.FallbackPolicy = new AuthorizationPolicyBuilder()
+                    .RequireAuthenticatedUser()
+                    .Build();
             });
         }
 
