@@ -1,10 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>92301434-af0e-4ec7-9054-0aff598bc338</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.0-rc.2.20475.17"/>
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.0-rc.2.20475.17"/>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.0-rc.2.20475.17" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.0-rc.2.20475.17" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.0-rc.2.20475.6">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
@@ -13,8 +14,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.0-rc.2.20516.1"/>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.0-rc.2.20475.6"/>
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.0-rc2"/>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.0-rc.2.20516.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.0-rc.2.20475.6" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.0-rc2" />
   </ItemGroup>
 </Project>
