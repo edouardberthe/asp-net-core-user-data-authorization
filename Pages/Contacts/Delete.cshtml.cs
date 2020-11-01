@@ -3,14 +3,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using AspNetCoreUserDataAuthorization.Models;
+using AspNetCoreUserDataAuthorization.Data;
 
 namespace AspNetCoreUserDataAuthorization.Pages.Contacts
 {
     public class DeleteModel : PageModel
     {
-        private readonly AspNetCoreUserDataAuthorization.Data.AspNetCoreUserDataAuthorizationContext _context;
+        private readonly ApplicationContext _context;
 
-        public DeleteModel(AspNetCoreUserDataAuthorization.Data.AspNetCoreUserDataAuthorizationContext context)
+        public DeleteModel(ApplicationContext context)
         {
             _context = context;
         }

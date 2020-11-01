@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AspNetCoreUserDataAuthorization.Migrations
 {
-    [DbContext(typeof(AspNetCoreUserDataAuthorizationContext))]
+    [DbContext(typeof(ApplicationContext))]
     [Migration("20201101005432_AddOwnerAndStatus")]
     partial class AddOwnerAndStatus
     {

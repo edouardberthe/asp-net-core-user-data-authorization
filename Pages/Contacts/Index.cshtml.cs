@@ -3,14 +3,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using AspNetCoreUserDataAuthorization.Models;
+using AspNetCoreUserDataAuthorization.Data;
 
 namespace AspNetCoreUserDataAuthorization.Pages.Contacts
 {
     public class IndexModel : PageModel
     {
-        private readonly AspNetCoreUserDataAuthorization.Data.AspNetCoreUserDataAuthorizationContext _context;
+        private readonly ApplicationContext _context;
 
-        public IndexModel(AspNetCoreUserDataAuthorization.Data.AspNetCoreUserDataAuthorizationContext context)
+        public IndexModel(ApplicationContext context)
         {
             _context = context;
         }

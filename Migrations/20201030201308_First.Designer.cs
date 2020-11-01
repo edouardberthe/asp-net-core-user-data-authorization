@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AspNetCoreUserDataAuthorization.Migrations
 {
-    [DbContext(typeof(AspNetCoreUserDataAuthorizationContext))]
+    [DbContext(typeof(ApplicationContext))]
     [Migration("20201030201308_First")]
     partial class First
     {

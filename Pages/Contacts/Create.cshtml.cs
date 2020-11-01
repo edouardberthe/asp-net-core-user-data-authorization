@@ -2,14 +2,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using AspNetCoreUserDataAuthorization.Models;
+using AspNetCoreUserDataAuthorization.Data;
 
 namespace AspNetCoreUserDataAuthorization.Pages.Contacts
 {
     public class CreateModel : PageModel
     {
-        private readonly AspNetCoreUserDataAuthorization.Data.AspNetCoreUserDataAuthorizationContext _context;
+        private readonly ApplicationContext _context;
 
-        public CreateModel(AspNetCoreUserDataAuthorization.Data.AspNetCoreUserDataAuthorizationContext context)
+        public CreateModel(ApplicationContext context)
         {
             _context = context;
         }

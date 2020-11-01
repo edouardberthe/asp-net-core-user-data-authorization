@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AspNetCoreUserDataAuthorization.Data
 {
-    public sealed class AspNetCoreUserDataAuthorizationContext : IdentityDbContext<IdentityUser>
+    public sealed class ApplicationContext : IdentityDbContext<IdentityUser>
     {
-        public AspNetCoreUserDataAuthorizationContext(DbContextOptions<AspNetCoreUserDataAuthorizationContext> options)
+        public ApplicationContext(DbContextOptions<ApplicationContext> options)
             : base(options)
         {}
 

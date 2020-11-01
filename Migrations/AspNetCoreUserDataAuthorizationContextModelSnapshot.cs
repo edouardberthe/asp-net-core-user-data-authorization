@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AspNetCoreUserDataAuthorization.Migrations
 {
-    [DbContext(typeof(AspNetCoreUserDataAuthorizationContext))]
+    [DbContext(typeof(ApplicationContext))]
     partial class AspNetCoreUserDataAuthorizationContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

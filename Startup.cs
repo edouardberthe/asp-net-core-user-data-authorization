@@ -27,7 +27,7 @@ namespace AspNetCoreUserDataAuthorization
         {
             services.AddRazorPages();
 
-            services.AddDbContext<AspNetCoreUserDataAuthorizationContext>(options =>
+            services.AddDbContext<ApplicationContext>(options =>
             {
                 var connectionString = Configuration.GetConnectionString("ContactContext");
                 Console.WriteLine($"DB connectionString = {connectionString}");
@@ -45,7 +45,7 @@ namespace AspNetCoreUserDataAuthorization
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                     .AddRoles<IdentityRole>()
-                    .AddEntityFrameworkStores<AspNetCoreUserDataAuthorizationContext>();
+                    .AddEntityFrameworkStores<ApplicationContext>();
 
             services.Configure<IdentityOptions>(options =>
             {

@@ -4,14 +4,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using AspNetCoreUserDataAuthorization.Models;
+using AspNetCoreUserDataAuthorization.Data;
 
 namespace AspNetCoreUserDataAuthorization.Pages.Contacts
 {
     public class EditModel : PageModel
     {
-        private readonly AspNetCoreUserDataAuthorization.Data.AspNetCoreUserDataAuthorizationContext _context;
+        private readonly ApplicationContext _context;
 
-        public EditModel(AspNetCoreUserDataAuthorization.Data.AspNetCoreUserDataAuthorizationContext context)
+        public EditModel(ApplicationContext context)
         {
             _context = context;
         }
