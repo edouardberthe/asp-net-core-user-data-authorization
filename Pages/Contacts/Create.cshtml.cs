@@ -1,18 +1,18 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using AspNetCoreUserDataAuthorization.Models;
 using AspNetCoreUserDataAuthorization.Data;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using AspNetCoreUserDataAuthorization.Authorization;
 
 namespace AspNetCoreUserDataAuthorization.Pages.Contacts
 {
-    public class CreateModel : PageModel
+    public class CreateModel : BasePageModel
     {
-        private readonly ApplicationContext _context;
-
-        public CreateModel(ApplicationContext context)
+        public CreateModel(ApplicationContext context, IAuthorizationService authorizationService, UserManager<IdentityUser> userManager)
+            : base(context, authorizationService, userManager)
         {
-            _context = context;
         }
 
         public IActionResult OnGet()
@@ -31,8 +31,17 @@ namespace AspNetCoreUserDataAuthorization.Pages.Contacts
                 return Page();
             }
 
-            _context.Contacts.Add(Contact);
-            await _context.SaveChangesAsync();
+            Contact.OwnerID = UserManager.GetUserId(User);
+
+            var isAuthorized = await AuthorizationService.AuthorizeAsync(User, Contact, ContactOperations.Create);
+
+            if (!isAuthorized.Succeeded)
+            {
+                return Forbid();
+            }
+
+            Context.Contacts.Add(Contact);
+            await Context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }

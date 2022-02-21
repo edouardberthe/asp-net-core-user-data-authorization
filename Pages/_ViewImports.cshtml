@@ -1,3 +1,7 @@
 ﻿@using AspNetCoreUserDataAuthorization
 @namespace AspNetCoreUserDataAuthorization.Pages
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using AspNetCoreUserDataAuthorization.Authorization;
+@using Microsoft.AspNetCore.Authorization
+@using AspNetCoreUserDataAuthorization.Models
+@inject IAuthorizationService AuthorizationService

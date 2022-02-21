@@ -1,4 +1,5 @@
 using System;
+using AspNetCoreUserDataAuthorization.Authorization;
 using AspNetCoreUserDataAuthorization.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -76,6 +77,11 @@ namespace AspNetCoreUserDataAuthorization
                     .RequireAuthenticatedUser()
                     .Build();
             });
+
+            // Authorization handlers
+            services.AddScoped<IAuthorizationHandler, ContactIsOwnerAuthorizationHandler>();
+            services.AddSingleton<IAuthorizationHandler, ContactManagerAuthorizationHandler>();
+            services.AddSingleton<IAuthorizationHandler, ContactAdministratorAuthorizationHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
